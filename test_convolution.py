@@ -9,7 +9,8 @@ Designed for use with pytest. Contains the following tests:
         - Case: '     '    '        odd     '    '        '      '       '    even    '     '
         - Case: '     '    '        even    '    '        '      '       '    odd     '     '
         - Case: '     '    '        even    '    '        '      '       '    even    '     '
-        These cases test that the boundary effects are the same as those from the numpy function
+        These cases test that the boundary effects are the same as those from the numpy function,
+        though in practice this may not matter.
 
 Also contains the function:
     * plot_original_and_downsampled - Compares noisy sinusoidal signal before and after downsampling

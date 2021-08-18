@@ -5,6 +5,7 @@ Contains the following functions:
     * decimate_by_2 - removes every other sample from the input array
     * downsample_by_2 - applies a low-pass filter and decimation to an input array
     * convolve_arrays - implementation of the convolution operation
+        unit tests for this function are provided in test_convolution.py
 """
 
 KAISER_CONVOLUTION_FILTER = [-0.01452123, -0.0155227 , 0.01667252, 0.01800633, -0.01957209,
@@ -16,7 +17,7 @@ KAISER_CONVOLUTION_FILTER = [-0.01452123, -0.0155227 , 0.01667252, 0.01800633, -
                              -0.0155227 , -0.01452123] 
 
 def decimate_by_2(signal):
-    """ Removes every other element from an array
+    """ Removes every other sample from an array
 
     Parameters
     -----------
@@ -55,7 +56,7 @@ def downsample_by_2(signal):
     return decimated_filtered_signal
 
 def convolve_arrays(signal, conv_filter):
-    """ Performs the discrete, linear convolution operation on two arrays (Finite impulse response)
+    """ Performs the discrete, linear convolution operation on two arrays
 
     Resources used: 
         * http://digitalsoundandmusic.com/7-3-1-convolution-and-time-domain-filtering/
@@ -64,10 +65,10 @@ def convolve_arrays(signal, conv_filter):
     Parameters
     -----------
     signal: list
-        Audio signal, though the operation works for any array
+        Audio signal, though the operation works for any 1-d array
 
     conv_filter: list
-        Convolution kernel, though the operation works for any array
+        Convolution kernel, though the operation works for any 1-d array
 
     Returns
     -----------
@@ -75,6 +76,7 @@ def convolve_arrays(signal, conv_filter):
         Represents filtered audio samples
     """
     output_array_length = max(len(signal), len(conv_filter))
+    
     # The full convolved output array could have length (len(signal) + len(conv_filter) - 1)
     # To have the output array have length N = max(len(signal), len(conv_filter)), we need to find
     # the middle N elements. The 'centering_factor' provides the needed shift
